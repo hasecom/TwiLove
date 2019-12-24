@@ -1,0 +1,7 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+RewriteRule ^request/ GreatWriter/Routes/web.php
+RewriteRule ^$ TwiLove/Views/Scenes/Index.php
+</IfModule>

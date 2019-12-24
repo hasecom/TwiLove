@@ -1,0 +1,18 @@
+@import url('https://fonts.googleapis.com/css?family=Anton&display=swap');
+@import url(//use.fontawesome.com/releases/v5.7.2/css/all.css);
+.Anton{
+  font-family: 'Anton', sans-serif;
+}
+.twitter_btn{
+  background:#1DA1F2;
+  color:white;
+}
+.twitter_btn:before {
+  font-family: "Font Awesome 5 Brands";
+  content: '\f099';
+  font-weight: 900;
+  padding-right:5px;
+}
+.pointer{
+  cursor: pointer;
+}
