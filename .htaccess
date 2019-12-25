@@ -2,6 +2,6 @@
 RewriteEngine On
 RewriteBase /
 
-RewriteRule ^request/ GreatWriter/Routes/web.php
+RewriteRule ^request/ TwiLove/Routes/web.php
 RewriteRule ^$ TwiLove/Views/Scenes/Index.php
 </IfModule>

@@ -1,11 +1,3 @@
-<?php
-session_start();
-$_SESSION['aa'] = "b";
-
-if(isset($_SESSION['aa'])){
-    echo "a";
-}
-?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -20,7 +12,7 @@ if(isset($_SESSION['aa'])){
         <h2 class="title Anton">Twi-Love</h2>
         <div class="description">- いいねをしあうWebサービス -</div>
         <div class="login_btn pointer">
-            <button class="btn btn-lg twitter_btn rounded-pill shadow-lg">Twitterでログインする</button>
+            <button class="btn btn twitter_btn rounded-pill shadow-lg" @click="callTwitterApp">Twitterで登録・ログインする</button>
         </div>
     </div>
 </body>
@@ -37,6 +29,9 @@ if(isset($_SESSION['aa'])){
             screenFormat(){
                 $('#app').width(window.innerWidth).height(window.innerHeight);
                 $('.login_btn').css('top',window.innerHeight/2);
+            },
+            callTwitterApp(){
+                location.href="request/twitter/req"
             }
         }
      });
