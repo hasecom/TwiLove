@@ -1,3 +1,11 @@
+<?php
+session_start();
+$_SESSION['aa'] = "b";
+
+if(isset($_SESSION['aa'])){
+    echo "a";
+}
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
