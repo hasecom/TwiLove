@@ -59,7 +59,7 @@ class TwitterController{
         $accessToken = $objTwitterConection->oauth("oauth/access_token", array("oauth_verifier" => $_REQUEST['oauth_verifier']));
         Session::set('twAccessToken',$accessToken);
         $Domain = Domain::isLocal() ? Domain::$domain : Domain::$releaseDomain;
-        //マイページへリダイレクト
+        //マイページへリダイレクト 
         header( 'location:'.$Domain.'/' );
     }
 }
