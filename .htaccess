@@ -1,7 +1,0 @@
-<IfModule mod_rewrite.c>
-RewriteEngine On
-RewriteBase /
-
-RewriteRule ^request/ TwiLove/Routes/web.php
-RewriteRule ^$ TwiLove/Views/Scenes/Index.php
-</IfModule>
