@@ -60,7 +60,10 @@ class TwitterController{
         Session::set('twAccessToken',$accessToken);
         $Domain = Domain::isLocal() ? Domain::$domain : Domain::$releaseDomain;
         //マイページへリダイレクト 
-        header( 'location:'.$Domain.'/' );
+        header( 'location:'.$Domain.'/request/twitter/setting' );
+    }
+    public function SettingApp(){
+        echo "a";
     }
 }
 ?>
