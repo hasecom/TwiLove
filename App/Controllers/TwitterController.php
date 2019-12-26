@@ -35,7 +35,7 @@ class TwitterController{
 
         $CONSUMER_KEY = Configuration::get('CONSUMER_KEY');
         $CONSUMER_SECRET = Configuration::get('CONSUMER_SECRET');
-   
+
         // oauthトークン確認
         if(empty(Session::get('twOauthToken')) || empty(Session::get('twOauthTokenSecret')) || empty($_REQUEST['oauth_token']) || empty($_REQUEST['oauth_verifier'])){
             echo 'error token!!';
@@ -60,10 +60,7 @@ class TwitterController{
         Session::set('twAccessToken',$accessToken);
         $Domain = Domain::isLocal() ? Domain::$domain : Domain::$releaseDomain;
         //マイページへリダイレクト 
-        header( 'location:'.$Domain.'/request/twitter/setting' );
-    }
-    public function SettingApp(){
-        echo "a";
+        header( 'location:'.$Domain.'/request/user/setting' );
     }
 }
 ?>

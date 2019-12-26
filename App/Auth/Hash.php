@@ -13,7 +13,7 @@ class Hash{
         return crypt($val,Configuration::get('SESSION_SALT_KEY'));
     }
     public static function CokkieHash($val){
-        return substr($val.rand(),1,6);
+        return  hash('SHA256',$val.Configuration::get('COOKIE_SALT_KEY'));
     }
     public static function Oauth($val){
          return hash('SHA256',$val);

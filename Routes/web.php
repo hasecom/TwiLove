@@ -9,5 +9,5 @@ $Domain = Domain::isLocal() ? Domain::$domain : Domain::$releaseDomain;
 
 $Routes->Action("CooperationApp",$Domain.'/request/twitter/req',"TwitterController",$_REQUEST);
 $Routes->Action("CallbackApp",$Domain.'/request/twitter/callback',"TwitterController",$_REQUEST);
-$Routes->Action("SettingApp",$Domain.'/request/twitter/setting',"TwitterController",$_REQUEST);
+$Routes->Action("LoginOrRegist",$Domain.'/request/user/setting',"UserController",$_REQUEST);
 ?>
