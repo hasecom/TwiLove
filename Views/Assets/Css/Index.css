@@ -1,10 +1,4 @@
-body {
-    position: relative;
-  }
-  #app{
-      position: absolute;
-      background: linear-gradient(-135deg, #E4A972, #9941D8);
-    }
+
 .title{
     color:white;
     text-align: center;

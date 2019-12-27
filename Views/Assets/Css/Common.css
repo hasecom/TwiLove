@@ -3,6 +3,13 @@
 .Anton{
   font-family: 'Anton', sans-serif;
 }
+body {
+  position: relative;
+}
+#app{
+    position: absolute;
+    background: linear-gradient(-135deg, #E4A972, #9941D8);
+  }
 .twitter_btn{
   background:#1DA1F2;
   color:white;
@@ -34,6 +41,7 @@
   height:100%;
   background:rgba(0,0,0,0.4);
   top:0;
+  z-index:100;
 }
 #side_menu{
   position: absolute;
@@ -47,4 +55,12 @@
 }
 #side_menu ul {
   list-style: none;
+}
+#midashi{
+  position: relative;
+  width:90%;
+  margin:10px auto;
+  padding:10px 5px;
+  background:white;
+  text-align: center;
 }

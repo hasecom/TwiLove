@@ -1,0 +1,23 @@
+#tweetWrap{
+    position: relative;
+    width:90%;
+    height:60%;
+    background:white;
+    margin:0 auto;
+    top:20px;
+    z-index:10;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+#selectBtn{
+    position: absolute;
+    bottom:20px;
+    left: 0;
+    right: 0;
+    margin: auto;
+    text-align: center;
+}
+.select{
+    background-color: rgba(255, 118, 117,0.7);
+    transition: all 0.5s ease-out 0s;
+}

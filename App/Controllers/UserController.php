@@ -71,6 +71,20 @@ class UserController{
         //リクエストされたCookieKeyが不正であればトップに返す
         if($accessArr == null) echo json_encode(["redirectUrl"=>"./"]);
 
+        $CONSUMER_KEY = Configuration::get('CONSUMER_KEY');
+        $CONSUMER_SECRET = Configuration::get('CONSUMER_SECRET');
+        $accessToken = $accessArr[0]['access_token'];
+        $accessTokenSecret = $accessArr[0]['access_token_secret'];
+        $objTwitterConection = new TwitterOAuth
+        (
+            $CONSUMER_KEY,
+            $CONSUMER_SECRET,
+            $accessToken,
+            $accessTokenSecret
+        );
+        $user_params = ['count' => '15'];
+        $userInfo = $objTwitterConection->get('statuses/user_timeline', $user_params);
+        echo json_encode($userInfo);
     }
 
     
