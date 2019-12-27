@@ -5,6 +5,7 @@ require_once(__DIR__.'/../Configuration.php');
 require_once(__DIR__.'/../Twitter/TwitterOAuth.php');
 require_once(__DIR__.'/../Auth/Session.php');
 require_once(__DIR__.'/../Services/UserServices.php');
+require_once(__DIR__.'/../Services/CookieService.php');
 require_once(__DIR__.'/CookieController.php');
 require_once(__DIR__.'/../Constants/Domain.php');
 
@@ -12,6 +13,7 @@ use App\Twitter\Abraham\TwitterOAuth\TwitterOAuth;
 use App\Auth\Session;
 use App\Configuration;
 use App\Services\UserService;
+use App\Services\CookieService;
 use App\Controllers\CookieController;
 use App\Constants\Domain;
 
@@ -57,11 +59,20 @@ class UserController{
         }else{
             //user_inner_idからクッキーを取得
             $cookieKey = $userService->getCokkieById(['USER_INNER_ID'=>$user_inner_id]);
-            $setCookieKey = $cookieKey;
+            $setCookieKey = $cookieKey['cookie_key'];
         }
-        $cookieController->RegistCookie($setCookieKey['cookie_key']);
+        $cookieController->RegistCookie($setCookieKey);
         $Domain = Domain::isLocal() ? Domain::$domain : Domain::$releaseDomain;
-        header( 'location:'.$Domain.'/post' );
+        header( 'location:'.$Domain.'/home' );
     }
+    public function GetTweet($request){
+        $cookieService = new CookieService;
+        $accessArr = $cookieService->getAccessTokenByCookie(['COOKIE_KEY'=>$request['COOKIE_KEY']]);
+        //リクエストされたCookieKeyが不正であればトップに返す
+        if($accessArr == null) echo json_encode(["redirectUrl"=>"./"]);
+
+    }
+
+    
 }
 ?>

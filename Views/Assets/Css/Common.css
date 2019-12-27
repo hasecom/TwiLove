@@ -13,6 +13,38 @@
   font-weight: 900;
   padding-right:5px;
 }
+#side_bar:before{
+  font-family: "Font Awesome 5 Free";
+  content: '\f0c9';
+  font-weight: 900;
+}
 .pointer{
   cursor: pointer;
+}
+.margin_none{
+  margin:0;
+}
+._header{
+  width:100%;
+  height:50px;
+}
+#side_menu_wrap{
+  position: absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+  top:0;
+}
+#side_menu{
+  position: absolute;
+  width:0%;
+  height:100%;
+  background:rgba(0,0,0,0.7);
+  top:0;
+  right:0;
+  padding:100px 10px 0px 10px;
+  
+}
+#side_menu ul {
+  list-style: none;
 }
