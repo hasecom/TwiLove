@@ -25,6 +25,16 @@ body {
   content: '\f0c9';
   font-weight: 900;
 }
+#love:before{
+  font-family: "Font Awesome 5 Free";
+  content: '\f004';
+  font-weight: 900; 
+}
+#skip:before{
+  font-family: "Font Awesome 5 Free";
+  content: '\f2f9';
+  font-weight: 900;
+}
 #block_key:before{
   font-family: "Font Awesome 5 Free";
   content: '\f023';
@@ -43,6 +53,10 @@ body {
 }
 .margin_none{
   margin:0;
+}
+.px-none{
+  padding-left:0px;
+  padding-right:0px;
 }
 ._header{
   width:100%;

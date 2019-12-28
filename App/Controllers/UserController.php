@@ -125,10 +125,20 @@ class UserController{
     private function h($val){
         return htmlspecialchars($val);
     }
-    public function GetFavoriteTweet(){
+    public function GetFavoriteTweet($request){
+        $user_inner_id = "0";
+        if(isset($request['COOKIE_KEY'])){
+            $cookie_key = $request['COOKIE_KEY'];
+            $cookieService = new CookieService;
+            $userInfo = $cookieService->getUserInfoByCookie(['COOKIE_KEY'=>$cookie_key]);
+            if($userInfo != null){
+                $userInfo = $userInfo[0];
+                $user_inner_id = $userInfo['user_inner_id'];
+            }
+        }
         $tweetService = new TweetService;
-        //言い値の少ない投稿10件数を取得
-        $favoriteTweet = $tweetService->favoriteTweet();
+        //いいねの少ない投稿10件数を取得
+        $favoriteTweet = $tweetService->favoriteTweet(['USER_INNER_ID'=>$user_inner_id]);
         echo json_encode($favoriteTweet);
     }
 

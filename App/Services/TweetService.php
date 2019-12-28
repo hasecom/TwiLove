@@ -60,7 +60,7 @@ EOM;
     $connection =  new Connection();
     return $connection->con($sql,$param)[0];
     }
-    public function favoriteTweet($param = null){
+    public function favoriteTweet($param){
         $sql = null;
 $sql.= <<< EOM
 select
@@ -68,8 +68,8 @@ select
 from 
   request_tweet
 where
-  available = 1
-order by
+  available = 1 AND user_inner_id != :USER_INNER_ID
+ order by
  favorite_count
  limit 10
 EOM;
