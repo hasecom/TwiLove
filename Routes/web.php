@@ -11,4 +11,5 @@ $Routes->Action("CooperationApp",$Domain.'/request/twitter/req',"TwitterControll
 $Routes->Action("CallbackApp",$Domain.'/request/twitter/callback',"TwitterController",$_REQUEST);
 $Routes->Action("LoginOrRegist",$Domain.'/request/user/setting',"UserController",$_REQUEST);
 $Routes->Action("GetTweet",$Domain.'/request/user/gettweet',"UserController",$_REQUEST);
+$Routes->Action("SaveTweet",$Domain.'/request/user/savetweet',"UserController",$_REQUEST);
 ?>
