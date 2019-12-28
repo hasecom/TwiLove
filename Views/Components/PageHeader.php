@@ -14,7 +14,7 @@
         <ul class="d-none">
             <li class="py-3 pointer" onClick="location.href='./home'">ホーム</li>
             <li class="py-3 pointer" onClick="location.href='./post'">いいねをリクエスト</li>
-            <li class="py-3 pointer">いいねをする</li>
+            <li class="py-3 pointer" onClick="location.href='./favorite'">いいねをする</li>
         </ul>
     </div>
 </div>

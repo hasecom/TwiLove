@@ -125,6 +125,11 @@ class UserController{
     private function h($val){
         return htmlspecialchars($val);
     }
+    public function GetFavoriteTweet(){
+        $tweetService = new TweetService;
+        //言い値の少ない投稿10件数を取得
+        //$postCnt = $tweetService->isAllPost();
+    }
 
     
 }

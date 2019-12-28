@@ -1,0 +1,11 @@
+#tweetWrap{
+    position: relative;
+    width:90%;
+    height:60%;
+    background:white;
+    margin:0 auto;
+    top:20px;
+    z-index:10;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}

@@ -12,4 +12,5 @@ $Routes->Action("CallbackApp",$Domain.'/request/twitter/callback',"TwitterContro
 $Routes->Action("LoginOrRegist",$Domain.'/request/user/setting',"UserController",$_REQUEST);
 $Routes->Action("GetTweet",$Domain.'/request/user/gettweet',"UserController",$_REQUEST);
 $Routes->Action("SaveTweet",$Domain.'/request/user/savetweet',"UserController",$_REQUEST);
+$Routes->Action("GetFavoriteTweet",$Domain.'/request/user/getfavoritetweet',"UserController",$_REQUEST);
 ?>
