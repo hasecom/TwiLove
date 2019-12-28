@@ -21,3 +21,13 @@
     background-color: rgba(255, 118, 117,0.7);
     transition: all 0.5s ease-out 0s;
 }
+#block_post{
+    position: absolute;
+    width:90%;
+    height:70%;
+    background:rgba(0,0,0,0.4);
+    z-index:15;
+    margin:0 auto;
+    right:0;
+    left:0;
+}

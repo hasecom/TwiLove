@@ -12,7 +12,7 @@
 <div id="side_menu_wrap" class="d-none">
     <div id="side_menu" class="text-light">
         <ul class="d-none">
-            <li class="py-3 pointer">ホーム</li>
+            <li class="py-3 pointer" onClick="location.href='./home'">ホーム</li>
             <li class="py-3 pointer" onClick="location.href='./post'">いいねをリクエスト</li>
             <li class="py-3 pointer">いいねをする</li>
         </ul>

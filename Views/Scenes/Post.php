@@ -1,4 +1,10 @@
-<?php require_once(__DIR__.'/../Components/Ready.php'); ?>
+<?php 
+require_once(__DIR__.'/../Components/Ready.php'); 
+require_once(__DIR__.'/../../App/Helpers/TweetHelper.php'); 
+use App\Helpers\TweetHelper;
+$tweetHelper = new TweetHelper;
+$isquota = $tweetHelper->IsQuota($userInfo['user_inner_id']);
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,6 +18,14 @@
     <div id="app">
         <?php require_once(__DIR__.'/../Components/PageHeader.php'); ?>
         <div id="midashi" class="shadow">いいねをリクエスト</div>
+        <?php if(!$isquota): ?>
+                <div id="block_post">
+                    <div id="block_key_wrap" class="">
+                        <span class="small">いいねをしてください。</span>
+                        <div id="block_key"></div>
+                    </div>
+                </div>
+        <?php endif; ?>
         <div id="tweetWrap" class="px-1 py-3 shadow">
             <div class="tweet border py-2 px-2 my-2 shadow-sm" v-for="val,index in tweet" :key="val" :data-tweet="val" :id="'tweet_'+index"  @click="clickTweet(index)">
                 <div class="pb-2">
@@ -89,6 +103,7 @@
               axios.post(AjaxUrl,params)
               .then(res => {
                 if(res.data['redirectUrl']){ location.href = res.data['redirectUrl'] }
+                if(res.data['VALIDATION']){ window.alert(res.data['VALIDATION']); }
                 callback(res);
               })
             }
