@@ -26,7 +26,7 @@ VALUE
         :TWEET_ID,
         :TWEET_CONTENT,
         :USER_ICON_PATH,
-        0,
+        1,
         0,
         0
     )
@@ -59,6 +59,22 @@ where
 EOM;
     $connection =  new Connection();
     return $connection->con($sql,$param)[0];
+    }
+    public function favoriteTweet($param = null){
+        $sql = null;
+$sql.= <<< EOM
+select
+	*
+from 
+  request_tweet
+where
+  available = 1
+order by
+ favorite_count
+ limit 10
+EOM;
+    $connection =  new Connection();
+    return $connection->con($sql,$param);
     }
 }
 ?>

@@ -101,11 +101,11 @@ class UserController{
         $likeCnt = $tweetService->isAllLikeCnt(['USER_INNER_ID'=>$user_inner_id])['CNT'];
         $quotaCnt = ((int)$postCnt['CNT'])*((int)Key::$QuotaCnt);
         if($quotaCnt >= $likeCnt){
-            echo json_encode(['VALIDATION' => 'ノルマいいねが達成されていません。']);
-            die; 
+           echo json_encode(['VALIDATION' => 'ノルマいいねが達成されていません。']);
+           die; 
         }
         //鍵垢ではないか
-        if($this->h($request['PROTECTED'])){
+        if($this->h($request['PROTECTED']) == 'true'){
             echo json_encode(['VALIDATION' => '鍵アカウントの投稿はできません。']);
             die;
         }
@@ -128,7 +128,8 @@ class UserController{
     public function GetFavoriteTweet(){
         $tweetService = new TweetService;
         //言い値の少ない投稿10件数を取得
-        //$postCnt = $tweetService->isAllPost();
+        $favoriteTweet = $tweetService->favoriteTweet();
+        echo json_encode($favoriteTweet);
     }
 
     
