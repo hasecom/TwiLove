@@ -95,3 +95,9 @@ body {
   background:white;
   text-align: center;
 }
+#my_card{
+  margin:0 auto;
+  width:300px;
+  height:120px;
+  background:white;
+}

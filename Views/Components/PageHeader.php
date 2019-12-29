@@ -2,7 +2,7 @@
     <div class="py-2 text-center row margin_none">
         <div class="col-3"></div>
         <div class="col-6">
-            <h2 class="Anton">Twi-Love</h2>
+            <h2 class="Anton" onClick="location.href='./home'">Twi-Love</h2>
         </div>
         <div class="col-3">
             <div class="d-inline pointer" id="side_bar" onClick='ClickSideBar()'></div>
