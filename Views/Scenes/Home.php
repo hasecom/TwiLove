@@ -30,6 +30,14 @@
                 <button class="btn btn-success" @click="location.href='./favorite'">いいねをする</button>
             </div>
         </div>
+        <div class="bg-light mx-5 card py-4 px-3">
+            <div class="text-center pb-2">使い方</div>
+            <ul>
+                <li>いいねを10件する</li>
+                <li>いいねをリクエスト</li>
+                <li>いいねをもらう！</li>
+            </ul>
+        </div>
     </div>
 </body>
 <script type="module">
