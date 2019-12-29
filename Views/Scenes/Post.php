@@ -97,7 +97,8 @@ $isquota = $tweetHelper->IsQuota($userInfo['user_inner_id']);
                this.Axios(AjaxUrl,callback,params);
             },
             savedtweet(){
-
+                alert('リクエストを受け付けました。');
+                location.reload();
             },
             Axios(AjaxUrl,callback,params){
               axios.post(AjaxUrl,params)

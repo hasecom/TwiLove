@@ -1,4 +1,9 @@
-<?php require_once(__DIR__ . '/../Components/Ready.php'); ?>
+<?php require_once(__DIR__ . '/../Components/Ready.php');
+require_once(__DIR__.'/../../App/Helpers/TweetHelper.php'); 
+use App\Helpers\TweetHelper;
+$tweetHelper = new TweetHelper;
+$isquota = $tweetHelper->IsQuota($userInfo['user_inner_id']);
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -17,13 +22,21 @@
     <div id="tweetWrap" class="px-1 py-3 shadow">
       <div class="px-3 py-2">{{tweet.tweet_content}}</div>
     </div>
+    <?php if($isquota): ?>
+                <div id="block_post">
+                    <div id="block_key_wrap" class="">
+                        <span class="small">いいねをリクエストできます。</span>
+                        <div id="block_key"></div>
+                    </div>
+                </div>
+    <?php endif; ?>
     <div id="controlWrap" class="mt-4">
       <div class="row margin_x_none">
         <div class="col-6 py-2 px-none">
-          <button id="love" class="rounded-circle border bg-light shadow-lg pointer d-block" @click="loveClick"></button>
+          <button id="love" class="btn rounded-circle border bg-light shadow-lg pointer d-block" @click="loveClick"></button>
         </div>
         <div class="col-6 py-2 px-none">
-          <button id="skip" class="rounded-circle border  bg-light shadow-lg pointer d-block"  @click="skipClick"></button>
+          <button id="skip" class="btn rounded-circle border  bg-light shadow-lg pointer d-block"  @click="skipClick"></button>
         </div>
       </div>
     </div>
@@ -36,6 +49,7 @@
         data: {
           outputTweets:[],
           display_cnt:0,
+          good_cnt:0,
           tweet:[],
           userInfo:[]
         },
@@ -64,6 +78,10 @@
             loveClick(){
               //ボタンを非活性
               this.disabledBtn();
+              if(9 <= this.good_cnt){
+                this.finish_favorite();
+                return false;
+              }
               var this_ = this;
               var callback = function(res){ this_.loveClicked(res); };
               let params = new URLSearchParams();
@@ -74,13 +92,22 @@
               this.Axios(AjaxUrl,callback,params);
             },
             skipClick(){
-
+              this.display_cnt = this.display_cnt + 1;
+              this.tweet = this.outputTweets[this.display_cnt];
+              if(9 <= this.display_cnt){
+                this.display_cnt = 0;
+                this._mounted();
+              }
             },
             loveClicked(){
               this.abledBtn();
               this.display_cnt = this.display_cnt + 1;
-              console.log(this.outputTweets[this.display_cnt])
+              this.good_cnt = this.good_cnt + 1;
               this.tweet = this.outputTweets[this.display_cnt];
+            },
+            finish_favorite(){
+              alert("いいねをリクエストできます。")
+              location.reload();
             },
             disabledBtn(){
               $('#love').prop('disabled', true);

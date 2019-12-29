@@ -11,7 +11,7 @@
 <body>
     <div id="app">
         <?php require_once(__DIR__.'/../Components/PageHeader.php'); ?>
-        <?php echo $userInfo['id']; ?>
+        
     </div>
 </body>
 <script type="module">
