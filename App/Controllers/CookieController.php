@@ -20,7 +20,7 @@ class CookieController{
         if(Domain::isLocal()){
             $domain = Domain::$domain;
         }else{
-            $domain = Domain::$releaseDomain;
+            $domain = Domain::$releaseCookieDomain;
         }
         setcookie(Key::$cookieKeyName,$cookieKey,time()+60*60*24*60,$domain);
     }
