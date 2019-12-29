@@ -10,7 +10,6 @@ require_once(__DIR__.'/../Services/TweetService.php');
 require_once(__DIR__.'/CookieController.php');
 require_once(__DIR__.'/../Constants/Domain.php');
 require_once(__DIR__.'/../Constants/Key.php');
-
 use App\Twitter\Abraham\TwitterOAuth\TwitterOAuth;
 use App\Auth\Session;
 use App\Configuration;
@@ -73,8 +72,10 @@ class UserController{
         $cookieService = new CookieService;
         $accessArr = $cookieService->getAccessTokenByCookie(['COOKIE_KEY'=>$request['COOKIE_KEY']]);
         //リクエストされたCookieKeyが不正であればトップに返す
-        if($accessArr == null) echo json_encode(["redirectUrl"=>"./"]);
-
+        if($accessArr == null){
+            echo json_encode(["redirectUrl"=>"./"]);
+            die;
+        }
         $CONSUMER_KEY = Configuration::get('CONSUMER_KEY');
         $CONSUMER_SECRET = Configuration::get('CONSUMER_SECRET');
         $accessToken = $accessArr[0]['access_token'];
@@ -139,9 +140,41 @@ class UserController{
         $tweetService = new TweetService;
         //いいねの少ない投稿10件数を取得
         $favoriteTweet = $tweetService->favoriteTweet(['USER_INNER_ID'=>$user_inner_id]);
-        echo json_encode($favoriteTweet);
+        
+        echo json_encode(['USER_INFO'=>$userInfo,'TWEET'=>$favoriteTweet]);
     }
+    public function PostTweetLove($request){
+        $twitter_id =$request['TWIEET_ID'];
+        //cookieからユーザ情報を取得
+        $cookieService = new CookieService;
+        $accessArr = $cookieService->getAccessTokenByCookie(['COOKIE_KEY'=>$request['COOKIE_KEY']]);
+        //リクエストされたCookieKeyが不正であればトップに返す
+        if($accessArr == null) die;
 
-    
+        //いいねをする
+        $CONSUMER_KEY = Configuration::get('CONSUMER_KEY');
+        $CONSUMER_SECRET = Configuration::get('CONSUMER_SECRET');
+        $accessToken = $accessArr[0]['access_token'];
+        $accessTokenSecret = $accessArr[0]['access_token_secret'];
+        $objTwitterConection = new TwitterOAuth
+        (
+            $CONSUMER_KEY,
+            $CONSUMER_SECRET,
+            $accessToken,
+            $accessTokenSecret
+        );
+        $warn = 0;
+        $result = $objTwitterConection->post('favorites/create', ['id' => $twitter_id]);
+        if(isset($result->errors[0])){
+            if($result->errors[0]->code == '139'){
+                //139:既にいいねしている投稿->無視
+            }else if($result->errors[0]->code == '142'){
+                //142:鍵垢のツイートなのでいいねできない
+                //warnの取得 + 1
+                
+            }
+        }
+        //DBに登録(favorite,request_tweet)
+    }   
 }
 ?>

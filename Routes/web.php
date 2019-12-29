@@ -13,4 +13,5 @@ $Routes->Action("LoginOrRegist",$Domain.'/request/user/setting',"UserController"
 $Routes->Action("GetTweet",$Domain.'/request/user/gettweet',"UserController",$_REQUEST);
 $Routes->Action("SaveTweet",$Domain.'/request/user/savetweet',"UserController",$_REQUEST);
 $Routes->Action("GetFavoriteTweet",$Domain.'/request/user/getfavoritetweet',"UserController",$_REQUEST);
+$Routes->Action("PostTweetLove",$Domain.'/request/user/love',"UserController",$_REQUEST);
 ?>

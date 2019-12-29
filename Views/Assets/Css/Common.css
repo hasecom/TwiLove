@@ -54,6 +54,10 @@ body {
 .margin_none{
   margin:0;
 }
+.margin_x_none{
+  margin-left:0px;
+  margin-right:0px;
+}
 .px-none{
   padding-left:0px;
   padding-right:0px;

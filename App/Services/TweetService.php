@@ -64,7 +64,8 @@ EOM;
         $sql = null;
 $sql.= <<< EOM
 select
-	*
+    tweet_content,
+    tweet_id
 from 
   request_tweet
 where

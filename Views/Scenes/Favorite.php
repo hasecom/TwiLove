@@ -15,15 +15,15 @@
     <?php require_once(__DIR__ . '/../Components/PageHeader.php'); ?>
     <div id="midashi" class="shadow">いいねをする</div>
     <div id="tweetWrap" class="px-1 py-3 shadow">
-      <div>{{tweet.tweet_content}}</div>
+      <div class="px-3 py-2">{{tweet.tweet_content}}</div>
     </div>
-    <div id="controlWrap" class="my-3">
-      <div class="row margin_none">
+    <div id="controlWrap" class="mt-4">
+      <div class="row margin_x_none">
         <div class="col-6 py-2 px-none">
-          <div id="love" class="rounded-circle border bg-light shadow-lg pointer"></div>
+          <button id="love" class="rounded-circle border bg-light shadow-lg pointer d-block" @click="loveClick"></button>
         </div>
         <div class="col-6 py-2 px-none">
-          <div id="skip" class="rounded-circle border  bg-light shadow-lg pointer"></div>
+          <button id="skip" class="rounded-circle border  bg-light shadow-lg pointer d-block"  @click="skipClick"></button>
         </div>
       </div>
     </div>
@@ -36,7 +36,8 @@
         data: {
           outputTweets:[],
           display_cnt:0,
-          tweet:[]
+          tweet:[],
+          userInfo:[]
         },
         mounted(){
             this.screenFormat();
@@ -56,8 +57,35 @@
                 $('#app').width(window.innerWidth).height(window.innerHeight);
             },
             outputTweet(res){
-              this.outputTweets = res['data'];
-              this.tweet = res['data'][this.display_cnt];
+              this.outputTweets = res['data']['TWEET'];
+              this.tweet = res['data']['TWEET'][this.display_cnt];
+              this.userInfo = res['data']['USER_INFO'];
+            },
+            loveClick(){
+              //ボタンを非活性
+              this.disabledBtn();
+              var this_ = this;
+              var callback = function(res){ this_.loveClicked(res); };
+              let params = new URLSearchParams();
+              params.append('USER_INNER_ID',this.userInfo['user_inner_id']);
+              params.append('TWIEET_ID', this.tweet['tweet_id']);
+              params.append('COOKIE_KEY', this.userInfo['cookie_key']);
+              var AjaxUrl = 'request/user/love';
+              this.Axios(AjaxUrl,callback,params);
+            },
+            skipClick(){
+
+            },
+            loveClicked(){
+              this.abledBtn();
+            },
+            disabledBtn(){
+              $('#love').prop('disabled', true);
+              $('#skip').prop('disabled', true);
+            },
+            abledBtn(){
+              $('#love').prop('disabled', false);
+              $('#skip').prop('disabled', false);
             },
             GetAxios(AjaxUrl,callback){
               axios.get(AjaxUrl)
