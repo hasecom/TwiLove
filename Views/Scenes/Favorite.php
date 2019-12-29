@@ -25,7 +25,7 @@ $isquota = $tweetHelper->IsQuota($userInfo['user_inner_id']);
     <?php if($isquota): ?>
                 <div id="block_post">
                     <div id="block_key_wrap" class="">
-                        <span class="small">いいねをリクエストできます。</span>
+                        <span class="small">いいねを達成しました。いいねをリクエストできます。</span>
                         <div id="block_key"></div>
                     </div>
                 </div>
