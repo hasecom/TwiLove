@@ -145,6 +145,7 @@ class UserController{
     }
     public function PostTweetLove($request){
         $twitter_id =$request['TWIEET_ID'];
+        $user_inner_id = $request['USER_INNER_ID'];
         //cookieからユーザ情報を取得
         $cookieService = new CookieService;
         $accessArr = $cookieService->getAccessTokenByCookie(['COOKIE_KEY'=>$request['COOKIE_KEY']]);
@@ -164,17 +165,24 @@ class UserController{
             $accessTokenSecret
         );
         $warn = 0;
+        //いいねの実行
         $result = $objTwitterConection->post('favorites/create', ['id' => $twitter_id]);
+        $tweetService = new TweetService;
         if(isset($result->errors[0])){
             if($result->errors[0]->code == '139'){
                 //139:既にいいねしている投稿->無視
             }else if($result->errors[0]->code == '142'){
                 //142:鍵垢のツイートなのでいいねできない
-                //warnの取得 + 1
-                
+                //warn + 1
+                $tweetService->setWarnTweet(['TWEET_ID'=>$twitter_id]);
             }
         }
         //DBに登録(favorite,request_tweet)
+        $tweetService->updateFavoriteTweet(['TWEET_ID'=>$twitter_id]);
+        $tweetService->registFavoriteTweet([
+            "USER_INNER_ID"=>$user_inner_id,
+            "REQUEST_TWEET_ID"=>$twitter_id
+            ]);
     }   
 }
 ?>

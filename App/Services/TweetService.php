@@ -77,5 +77,51 @@ EOM;
     $connection =  new Connection();
     return $connection->con($sql,$param);
     }
+    public function setWarnTweet($param){
+        $sql = null;
+$sql.= <<< EOM
+UPDATE 
+ request_tweet  
+SET 
+ warn = warn + 1
+WHERE
+tweet_id = :TWEET_ID
+EOM;
+    $connection =  new Connection();
+    return $connection->con($sql,$param);
+    }
+    public function updateFavoriteTweet($param){
+        $sql = null;
+$sql.= <<< EOM
+UPDATE 
+ request_tweet  
+SET 
+favorite_count = favorite_count + 1
+WHERE
+tweet_id = :TWEET_ID
+EOM;
+$connection =  new Connection();
+return $connection->con($sql,$param);
+    }
+    public function registFavoriteTweet($param){
+        $sql = null;
+$sql.= <<< EOM
+INSERT INTO 
+    favorite 
+    (
+        user_inner_id,
+        request_tweet_id,
+        favorited
+    ) 
+VALUE 
+    (
+        :USER_INNER_ID,
+        :REQUEST_TWEET_ID,
+        1
+    )
+EOM;
+$connection =  new Connection();
+return $connection->con($sql,$param);       
+    }
 }
 ?>

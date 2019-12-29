@@ -78,6 +78,9 @@
             },
             loveClicked(){
               this.abledBtn();
+              this.display_cnt = this.display_cnt + 1;
+              console.log(this.outputTweets[this.display_cnt])
+              this.tweet = this.outputTweets[this.display_cnt];
             },
             disabledBtn(){
               $('#love').prop('disabled', true);
